@@ -1,7 +1,7 @@
 {
   "name": "@wetable/wetable",
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.2.0",
+  "description": "miniprogram, table",
   "main": "miniprogram_dist/index.js",
   "scripts": {
     "dev": "gulp dev --develop",
