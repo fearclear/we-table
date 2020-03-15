@@ -1,5 +1,4 @@
-@import "./common.wxss";
-@import "./reset.wxss";
+@import './table.less';
 
 .index {
   color: green;

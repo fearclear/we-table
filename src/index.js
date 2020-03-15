@@ -1,5 +1,4 @@
-const _ = require('./utils')
-
+// @ts-ignore
 Component({
   properties: {
     prop: {
@@ -12,13 +11,7 @@ Component({
   },
   lifetimes: {
     attached() {
-      wx.getSystemInfo({
-        success: () => {
-          this.setData({
-            flag: _.getFlag(),
-          })
-        }
-      })
+      console.log('attched') // eslint-disable-line
     }
   }
 })
