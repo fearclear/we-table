@@ -1,5 +1,10 @@
-@import './table.less';
+@import './table.wxss';
 
 .index {
   color: green;
+}
+
+
+.table {
+  display: table;
 }
