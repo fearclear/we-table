@@ -1,5 +1,5 @@
 {
-  "name": "@wetable",
+  "name": "wetable",
   "version": "0.2.3",
   "description": "miniprogram, table",
   "main": "miniprogram_dist/index.js",
