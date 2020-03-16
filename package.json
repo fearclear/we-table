@@ -1,6 +1,6 @@
 {
-  "name": "wetable",
-  "version": "0.2.4",
+  "name": "@fearcleari/wetable",
+  "version": "0.2.5",
   "description": "miniprogram, table",
   "main": "miniprogram_dist/index.js",
   "scripts": {
