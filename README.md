@@ -17,7 +17,7 @@
     ``` json
     index.json / app.json
     "usingComponents": {
-      "we-table": "@fearclear/wetable"
+      "we-table": "@fearcleari/wetable"
     }
     ```
 
