@@ -47,7 +47,7 @@ function genFixedBody(columns, dataSource, options) {
   const colgroup = _genCol(columns)
   const thead = _genThead(columns, options)
   const tbody = _genTbody(columns, dataSource)
-  const table = new Props('table', { style: `width: ${width};min-width: 100%;table-layout: fixed` }, [colgroup, thead, tbody])
+  const table = new Props('table', { style: `width: ${width};min-width: 100%;table-layout: fixed;` }, [colgroup, thead, tbody])
   const fixedTBody = new Props('div', { class: 'ant-table-body', style: `overflow: scroll;max-height: ${height};position: relative;` }, [table])
   return fixedTBody
 }
@@ -65,10 +65,10 @@ function genData(columns, dataSource) {
 // 生成表头
 function _genThead(columns, options) {
   let theadStyle = ''
-  if(options&&options.scroll&&options.scroll.y) {
+  if (options && options.scroll && options.scroll.y) {
     theadStyle = 'position: sticky; top: 0;'
   }
-  const thead = new Props('thead', { class: 'ant-table-head', style: theadStyle }, [new Props('tr')])
+  const thead = new Props('thead', { class: 'ant-table-head' }, [new Props('tr')])
   columns.forEach((item, index) => {
     let thClass = 'ant-table-row-cell'
     let thStyle = ''
@@ -76,11 +76,11 @@ function _genThead(columns, options) {
       thClass = 'ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last'
       thStyle = 'position: sticky; left: 0px;'
     }
-    if(theadStyle) {
-      if(index === 0) {
-        thStyle += theadStyle + 'z-index: 4; background: #fff;'
+    if (theadStyle) {
+      if (index === 0) {
+        thStyle += theadStyle + 'z-index: 4;'
       } else {
-        thStyle += theadStyle + 'z-index: 3; background: #fff;'
+        thStyle += theadStyle + 'z-index: 3;;'
       }
     }
     const th = new Props('th', { class: thClass, style: thStyle }, [{ type: 'text', text: item.title }])
@@ -107,7 +107,7 @@ function _genCol(columns) {
 function _genTbody(colmuns, dataSource) {
   const tbody = new Props('tbody', { class: 'ant-table-tbody', style: 'text-align: center' })
   for (let i = -1; i < dataSource.length; i++) {
-    if(i < 0) {
+    if (i < 0) {
       const tr = new Props('tr', { class: 'ant-table-row' })
       colmuns.forEach(() => {
         let tdClass = 'ant-table-measure-row'
