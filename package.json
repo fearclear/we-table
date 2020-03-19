@@ -1,6 +1,6 @@
 {
   "name": "@wetable/wetable",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "miniprogram, table",
   "main": "miniprogram_dist/index.js",
   "scripts": {
