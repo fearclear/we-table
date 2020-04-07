@@ -11,5 +11,5 @@ test('render', async () => {
 
   await _.sleep(10)
 
-  expect(_.match(component.dom, '<wx-view class="comp--index comp--other">index.test.properties-true</wx-view>')).toBe(true)  
+  expect(_.match(component.dom, '<wx-view class="comp--index comp--other">index.test.properties-true</wx-view>')).toBe(true)
 })

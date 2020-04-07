@@ -1,6 +1,5 @@
 import genTable from './utils'
 
-// @ts-ignore
 Component({
   properties: {
     scroll: {

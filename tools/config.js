@@ -23,12 +23,8 @@ module.exports = {
   demoDist, // demo 目标目录
 
   wxss: {
-    less: false, // 使用 less 来编写 wxss
+    less: true, // 使用 less 来编写 wxss
     sourcemap: false, // 生成 less sourcemap
-  },
-
-  js: {
-    webpack: true, // 使用 webpack 来构建 js
   },
 
   webpack: {
@@ -47,11 +43,18 @@ module.exports = {
           'eslint-loader'
         ],
         exclude: /node_modules/
+      }, {
+        test: /\.ts$/i,
+        use: [
+          'babel-loader',
+          'ts-loader'
+        ],
+        exclude: /node_modules/
       }],
     },
     resolve: {
       modules: [src, 'node_modules'],
-      extensions: ['.js', '.json'],
+      extensions: ['.ts', '.js', '.json'],
     },
     plugins: [
       new webpack.DefinePlugin({}),
@@ -66,6 +69,5 @@ module.exports = {
       assetFilter: assetFilename => assetFilename.endsWith('.js')
     }
   },
-
-  copy: ['./utils.js'], // 将会复制到目标目录
+  // copy: ['./utils.ts'], // 将会复制到目标目录
 }

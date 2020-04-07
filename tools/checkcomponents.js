@@ -23,14 +23,11 @@ function getJsonPathInfo(jsonPath) {
  * 检测是否包含其他自定义组件
  */
 const checkProps = ['usingComponents', 'componentGenerics']
-const hasCheckMap = {}
 async function checkIncludedComponents(jsonPath, componentListMap) {
   const json = _.readJson(jsonPath)
   if (!json) throw new Error(`json is not valid: "${jsonPath}"`)
 
   const {dirPath, fileName, fileBase} = getJsonPathInfo(jsonPath)
-  if (hasCheckMap[fileBase]) return
-  hasCheckMap[fileBase] = true
 
   for (let i = 0, len = checkProps.length; i < len; i++) {
     const checkProp = checkProps[i]
@@ -46,28 +43,47 @@ async function checkIncludedComponents(jsonPath, componentListMap) {
 
       // 检查相对路径
       const componentPath = `${path.join(dirPath, value)}.json`
+      // eslint-disable-next-line no-await-in-loop
       const isExists = await _.checkFileExists(componentPath)
       if (isExists) {
+        // eslint-disable-next-line no-await-in-loop
         await checkIncludedComponents(componentPath, componentListMap)
       }
     }
   }
 
   // 进入存储
-  componentListMap.wxmlFileList.push(`${fileBase}.wxml`)
-  componentListMap.wxssFileList.push(`${fileBase}.wxss`)
-  componentListMap.jsonFileList.push(`${fileBase}.json`)
-  componentListMap.jsFileList.push(`${fileBase}.js`)
+  let exists = await _.checkFileExists(path.join(dirPath, `${fileName}.wxml`))
+  if (exists) {
+    componentListMap.wxmlFileList.push(`${fileBase}.wxml`)
+  }
+  exists = await _.checkFileExists(path.join(dirPath, `${fileName}.wxss`))
+  exists && componentListMap.wxssFileList.push(`${fileBase}.wxss`)
+  exists = await _.checkFileExists(path.join(dirPath, `${fileName}.less`))
+  exists && componentListMap.lessFileList.push(`${fileBase}.less`)
+  exists = await _.checkFileExists(path.join(dirPath, `${fileName}.json`))
+  exists && componentListMap.jsonFileList.push(`${fileBase}.json`)
+  exists = await _.checkFileExists(path.join(dirPath, `${fileName}.js`))
+  exists && componentListMap.jsFileList.push(`${fileBase}.js`)
+  exists = await _.checkFileExists(path.join(dirPath, `${fileName}.ts`))
+  if (exists && componentListMap.tsFileList.indexOf(`${fileBase}.ts`) < 0) {
+    componentListMap.tsFileList.push(`${fileBase}.ts`)
+  }
 
-  componentListMap.jsFileMap[fileBase] = `${path.join(dirPath, fileName)}.js`
+  exists = await _.checkFileExists(path.join(dirPath, `${fileName}.js`))
+  exists && (componentListMap.jsFileMap[fileBase] = `${path.join(dirPath, fileName)}.js`)
+  exists = await _.checkFileExists(path.join(dirPath, `${fileName}.ts`))
+  exists && (componentListMap.jsFileMap[fileBase] = `${path.join(dirPath, fileName)}.ts`)
 }
 
 module.exports = async function (entry) {
   const componentListMap = {
     wxmlFileList: [],
     wxssFileList: [],
+    lessFileList: [],
     jsonFileList: [],
     jsFileList: [],
+    tsFileList: [],
 
     jsFileMap: {}, // 为 webpack entry 所用
   }

@@ -54,8 +54,11 @@
     "gulp-rename": "^1.4.0",
     "gulp-sourcemaps": "^2.6.5",
     "jest": "^23.5.0",
+    "miniprogram-api-typings": "^2.10.3-1",
     "miniprogram-simulate": "^1.0.0",
     "through2": "^2.0.3",
+    "ts-loader": "^6.2.2",
+    "typescript": "^3.8.3",
     "vinyl": "^2.2.0",
     "webpack": "^4.29.5",
     "webpack-node-externals": "^1.7.2"
