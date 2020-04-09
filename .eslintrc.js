@@ -1,8 +1,10 @@
 module.exports = {
   'extends': [
     'airbnb-base',
-    'plugin:promise/recommended'
+    'plugin:promise/recommended',
+    "plugin:@typescript-eslint/eslint-recommended"
   ],
+  'parser': '@typescript-eslint/parser',
   'parserOptions': {
     'ecmaVersion': 9,
     'ecmaFeatures': {
@@ -18,7 +20,8 @@ module.exports = {
   'plugins': [
     'import',
     'node',
-    'promise'
+    'promise',
+    '@typescript-eslint'
   ],
   'rules': {
     'arrow-parens': 'off',
@@ -42,9 +45,11 @@ module.exports = {
       }
     ],
     'import/prefer-default-export': 'off',
+    "import/extensions": "off",
     'linebreak-style': 'off',
     'no-catch-shadow': 'error',
     'no-continue': 'off',
+    'no-console': 'off',
     'no-div-regex': 'warn',
     'no-else-return': 'off',
     'no-param-reassign': 'off',
@@ -85,6 +90,11 @@ module.exports = {
     'no-await-in-loop': 'off',
     'no-restricted-syntax': 'off',
     'promise/always-return': 'off',
+    "@typescript-eslint/no-unused-vars": ["error", {
+      "vars": "all",
+      "args": "after-used",
+      "ignoreRestSiblings": false
+    }]
   },
   'globals': {
     'window': true,
@@ -95,5 +105,15 @@ module.exports = {
     'Behavior': true,
     'wx': true,
     'getCurrentPages': true,
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts", ".js"]
+      }
+    },
+    "import/extensions": {
+      "node": "never"
+    }
   }
 }
