@@ -30,15 +30,7 @@ Component({
   },
   lifetimes: {
     attached() {
-      const options = {
-        scroll: this.properties.scroll,
-        columns: this.properties.columns,
-        dataSource: this.properties.dataSource
-      }
-      const table = genTable(options)
-      this.setData({
-        nodes: [table]
-      })
+
     }
   },
   methods: {

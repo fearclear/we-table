@@ -1,3 +1,3 @@
-import WeTable from './weTable'
-
-console.log(WeTable.createElement('col', {span: 3}))
+export function genTable(options) {
+  return options
+}
