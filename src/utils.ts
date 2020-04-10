@@ -1,7 +1,10 @@
 class Props {
   public name;
+
   public attrs;
+
   public children;
+
   constructor(name, attrs?, children?) {
     this.name = name
     this.attrs = attrs

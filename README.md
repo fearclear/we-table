@@ -2,7 +2,6 @@
 
 ## 说明
 
-- 使用[antd](https://github.com/ant-design/ant-design)的table样式库
 - 用于小程序table展示
 
 ## 用法
