@@ -21,10 +21,10 @@ function _genThead(columns, options?) {
   const thead = new Props('thead', {class: 'wetable-head'}, [new Props('tr')])
   columns.forEach((item, index) => {
     let thClass = 'wetable-row-cell'
-    let thStyle = 'background: #fff;'
+    let thStyle = 'background: #fff; border: 1px solid #000;'
     if (item.fixed && item.fixed === 'left') {
       thClass = 'wetable-cell wetable-cell-fix-left wetable-cell-fix-left-last'
-      thStyle = 'position: sticky; left: 0px;'
+      thStyle = 'position: sticky; left: 0px; border: 1px solid #000;'
     }
     if (theadStyle) {
       if (index === 0) {
@@ -56,26 +56,15 @@ function _genCol(columns) {
 // 内容
 function _genTbody(colmuns, dataSource) {
   const tbody = new Props('tbody', {class: 'wetable-tbody', style: 'text-align: center'})
-  for (let i = -1; i < dataSource.length; i++) {
-    if (i < 0) {
-      const tr = new Props('tr', {class: 'wetable-row'})
-      colmuns.forEach(() => {
-        const tdClass = 'wetable-measure-row'
-        const tdStyle = 'padding: 0px; border: 0px; height: 0px;'
-        const td = new Props('td', {class: tdClass, style: tdStyle}, [{type: 'text', text: ''}])
-        tr.children.push(td)
-      })
-      tbody.children.push(tr)
-      continue
-    }
+  for (let i = 0; i < dataSource.length; i++) {
     const data = dataSource[i]
     const tr = new Props('tr', {class: 'wetable-row'})
     colmuns.forEach(col => {
       let tdClass = 'wetable-cell'
-      let tdStyle = ''
+      let tdStyle = 'border: 1px solid #000;'
       if (col.fixed && col.fixed === 'left') {
         tdClass = 'wetable-cell wetable-cell-fix-left wetable-cell-fix-left-last'
-        tdStyle = 'position: sticky; left: 0px;'
+        tdStyle = 'position: sticky; left: 0px; border: 1px solid #000;'
       }
       const td = new Props('td', {class: tdClass, style: tdStyle}, [{type: 'text', text: data[col.dataIndex]}])
       tr.children.push(td)
@@ -101,7 +90,7 @@ function genFixedBody(columns, dataSource, options) {
   const colgroup = _genCol(columns)
   const thead = _genThead(columns, options)
   const tbody = _genTbody(columns, dataSource)
-  const table = new Props('table', {style: `width: ${width};min-width: 100%;table-layout: fixed;`}, [colgroup, thead, tbody])
+  const table = new Props('table', {style: `width: ${width};min-width: 100%;table-layout: fixed;border-collapse: collapse;box-sizing:border-box`}, [colgroup, thead, tbody])
   const fixedTBody = new Props('div', {class: 'wetable-body', style: `overflow: scroll;max-height: ${height};position: relative;`}, [table])
   return fixedTBody
 }
@@ -134,6 +123,7 @@ export default function genTable(options) {
     const antTableContent = new Props('div', {class: 'wetable-content'}, [table])
     antTableContainer = new Props('div', {class: 'wetable-container'}, [antTableContent])
   }
+  console.log(antTableContainer)
   const antTable = new Props('div', {class: antTableClass}, [antTableContainer])
   const antSpinContainer = new Props('div', {class: 'ant-spin-container'}, [antTable])
   const antSpinNestedLoading = new Props('div', {class: 'ant-spin-nested-loading'}, [antSpinContainer])

@@ -1,7 +1,5 @@
 import {WeTableTagNameMap, WeTableProps, WeTableTextProps} from './weTable.d'
 
-export {WeTableTagNameMap, WeTableProps, WeTableTextProps}
-
 export default class WeTable {
   static createElement<K extends keyof WeTableTagNameMap>(
     name: K,
