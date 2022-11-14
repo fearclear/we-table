@@ -1,5 +1,2 @@
-miniprogram_dist/
-miniprogram_dev/
-
-test/
-tools/
+lib/
+dist/

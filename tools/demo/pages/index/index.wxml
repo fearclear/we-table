@@ -1,1 +1,0 @@
-<we-table columns="{{columns}}" scroll="{{scroll}}" dataSource="{{dataSource}}" ></we-table>
