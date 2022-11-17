@@ -13,10 +13,17 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
   },
   "include": [
     "src/**/*.ts",
-    "node_modules/miniprogram-api-typings/index.d.ts", "src/utils.ts"
+    "node_modules/miniprogram-api-typings/index.d.ts",
+    "src/utils.ts"
   ]
 }
