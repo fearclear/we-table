@@ -33,7 +33,10 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: [resolvePath('./src/index.wxml'), resolvePath('./src/index.json')],
+          src: [
+            resolvePath('./src/index.wxml'),
+            resolvePath('./src/index.json')
+          ],
           dest: resolvePath('./dist')
         }
       ]
